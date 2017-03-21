@@ -18,6 +18,7 @@ import txdbus.protocol
 
 from txdbus import authentication, message, objects, introspection, router
 from txdbus import error
+import six
 
 
 # Constant return values for requestBusName
@@ -594,7 +595,7 @@ class DBusClientConnection (txdbus.protocol.BasicDBusProtocol):
             e.message = ''
             e.values  = []
             if merr.body:
-                if isinstance(merr.body[0], basestring):
+                if isinstance(merr.body[0], six.string_types):
                     e.message = merr.body[0]
                 e.values = merr.body
             d.errback( e )
